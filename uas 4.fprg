@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="uas 4"/>
+        <attribute name="authors" value="vitac"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 04:58:35 PM"/>
+        <attribute name="created" value="dml0YWM7VklUQUNIQVJJU1RJOzIwMjUtMTItMTc7MDQ6MDM6MDggUE07MjcyMQ=="/>
+        <attribute name="edited" value="dml0YWM7VklUQUNIQVJJU1RJOzIwMjUtMTItMTc7MDQ6NTg6MzUgUE07MzsyODQx"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <declare name="i, jumlah, rata, max, min" type="Integer" array="False" size=""/>
+            <declare name="jumlahshift" type="Integer" array="True" size="n"/>
+            <assign variable="max" expression="0"/>
+            <assign variable="min" expression="999999999"/>
+            <declare name="nama" type="String" array="True" size="n"/>
+            <assign variable="i" expression="0"/>
+            <assign variable="jumlah" expression="0"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <input variable="nama[i]"/>
+                <do expression="jumlahshift[i]&gt;=7&amp;&amp;jumlahshift[i]&gt;=1">
+                    <input variable="jumlahshift[i]"/>
+                </do>
+            </for>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <assign variable="jumlah" expression="jumlah+jumlahshift[i]"/>
+            </for>
+            <assign variable="rata" expression="jumlah/(n-1)"/>
+            <if expression="rata&lt;3">
+                <then>
+                    <output expression="&quot;Distribusi tidak merata&quot;" newline="True"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="rata&gt;=5">
+                <then>
+                    <output expression="&quot;Shift terlalu padat&quot;" newline="True"/>
+                </then>
+                <else/>
+            </if>
+            <output expression="&quot;jumlah shift =&quot; &amp;jumlah" newline="True"/>
+            <output expression="&quot;Rata-rata =&quot; &amp;rata" newline="True"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <if expression="max&lt;jumlahshift[i]">
+                    <then>
+                        <assign variable="max" expression="jumlahshift[i]"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <if expression="min&gt;jumlahshift[i]">
+                    <then>
+                        <assign variable="min" expression="jumlahshift[i]"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <output expression="&quot;Shift terbanyak:&quot; &amp;max" newline="True"/>
+            <output expression="&quot;Shift tersedikit:&quot; &amp;min" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
